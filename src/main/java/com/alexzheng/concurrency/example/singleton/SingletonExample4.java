@@ -39,10 +39,10 @@ public class SingletonExample4 {
 
     //静态工厂方法获取单例对象
     public static SingletonExample4 getInstance(){
-        if (instance==null){ //双重检测机制
+        if (instance==null){ //双重检测机制       //B
             synchronized (SingletonExample4.class){ //同步锁
                 if (instance == null){
-                    instance = new SingletonExample4();
+                    instance = new SingletonExample4(); //A-3
                 }
             }
         }

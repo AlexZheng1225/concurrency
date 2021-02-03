@@ -29,7 +29,6 @@ public class SingletonExample6 {
     }
 
     //静态工厂方法获取单例对象
-    //单线程下代码没问题，多线程下代码可能会有问题 if循环中
     public static SingletonExample6 getInstance(){
         return instance;
     }
