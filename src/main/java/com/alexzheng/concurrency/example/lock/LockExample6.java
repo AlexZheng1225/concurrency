@@ -25,7 +25,7 @@ public class LockExample6 {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            log.info("get signal"); // 4
+            log.info("get signal"); // 40
             reentrantLock.unlock();
         }).start();
 
