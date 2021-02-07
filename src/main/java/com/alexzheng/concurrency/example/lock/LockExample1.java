@@ -1,4 +1,4 @@
-package com.alexzheng.concurrency.example.count;
+package com.alexzheng.concurrency.example.lock;
 
 import com.alexzheng.concurrency.annotation.NotThreadSafe;
 import com.alexzheng.concurrency.annotation.ThreadSafe;
@@ -16,7 +16,7 @@ import java.util.concurrent.Semaphore;
  */
 @Slf4j
 @ThreadSafe
-public class CountExample3 {
+public class LockExample1 {
     //请求总数
     public static int clientTotal = 5000;
 

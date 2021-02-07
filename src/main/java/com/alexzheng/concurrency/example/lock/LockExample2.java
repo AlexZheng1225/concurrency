@@ -1,6 +1,5 @@
-package com.alexzheng.concurrency.example.count;
+package com.alexzheng.concurrency.example.lock;
 
-import com.alexzheng.concurrency.annotation.NotThreadSafe;
 import com.alexzheng.concurrency.annotation.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
@@ -8,6 +7,8 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @Author Alex Zheng
@@ -16,15 +17,17 @@ import java.util.concurrent.Semaphore;
  */
 @Slf4j
 @ThreadSafe
-public class CountExample3 {
+public class LockExample2 {
     //请求总数
     public static int clientTotal = 5000;
 
     //同时并发执行线程数
-    public static int threadTotal = 50;
+    public static int threadTotal = 200;
 
     //计数
     public static int count = 0;
+
+    private final static Lock lock = new ReentrantLock();
 
     public static void main(String[] args) throws Exception {
         ExecutorService executorService = Executors.newCachedThreadPool();
@@ -47,8 +50,13 @@ public class CountExample3 {
         log.info("count:{}", count);
     }
 
-    private static synchronized void add(){
-        count++;
+    private static void add(){
+        lock.lock();
+        try{
+            count++;
+        }finally {
+            lock.unlock();
+        }
     }
 
 }
